@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mensagem Motivacional</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .mensagem {
+      font-size: 2em;
+      max-width: 800px;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .fade-in {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div id="mensagem" class="mensagem"></div>
+
+  <script>
+    const mensagens = [
+      "Você é capaz de coisas incríveis.",
+      "Acredite em si mesmo e tudo será possível.",
+      "Cada pequeno passo te aproxima do seu objetivo.",
+      "Nunca subestime o poder da persistência.",
+      "Grandes conquistas começam com pequenas ações.",
+      "Você é mais forte do que imagina.",
+      "Não tenha medo de recomeçar.",
+      "Seja o motivo do seu próprio orgulho.",
+      "Tudo bem não estar bem — dias melhores virão.",
+      "Você merece tudo o que há de melhor no mundo.",
+      "Não compare seu progresso com o dos outros.",
+      "O importante é continuar, mesmo devagar.",
+      "Você é único e especial do seu jeito.",
+      "Acredite: tudo vai dar certo.",
+      "Não espere por motivação — comece com disciplina.",
+      "Seu esforço será recompensado.",
+      "Você já venceu muitas batalhas até aqui.",
+      "Sorria. Seu sorriso ilumina o mundo.",
+      "Errar faz parte do processo. Aprenda e continue.",
+      "A sua jornada é só sua. Honre-a.",
+      "Você já é uma versão melhor do que ontem.",
+      "Seu valor não depende da opinião dos outros.",
+      "Permita-se crescer com cada desafio.",
+      "Você tem o que é preciso para vencer.",
+      "Não desista agora. O melhor pode estar por vir.",
+      "Cada novo dia é uma nova chance.",
+      "Respire fundo. Você está indo bem.",
+      "Não existe caminho certo, existe o seu caminho.",
+      "Você é luz, nunca se esqueça disso.",
+      "As dificuldades também ensinam.",
+      "Sua coragem é maior que seus medos.",
+      "Você é inspiração para alguém, mesmo sem saber.",
+      "Acredite no seu processo.",
+      "Tudo o que você procura está dentro de você.",
+      "A vida recompensa quem insiste.",
+      "Você merece amor, paz e sucesso.",
+      "Confie na sua jornada.",
+      "Não deixe que um dia ruim defina sua vida.",
+      "A sua energia atrai o que você vive.",
+      "Não tenha pressa, mas não pare.",
+      "Você pode recomeçar sempre que quiser.",
+      "Valorize suas conquistas, por menores que sejam.",
+      "Tudo passa. Inclusive os momentos ruins.",
+      "A mudança começa dentro de você.",
+      "Você é capaz de mudar sua realidade.",
+      "Acredite em cada passo que você dá.",
+      "Não é sorte, é esforço e dedicação.",
+      "Você já fez o mais difícil: começar.",
+      "Continue, mesmo quando ninguém estiver vendo.",
+      "Orgulhe-se da sua jornada.",
+      "Você é o autor da sua história.",
+      "Seja gentil com você mesmo.",
+      "Seja sua própria motivação.",
+      "Não existe sucesso sem esforço.",
+      "Tenha paciência com o seu tempo.",
+      "Você é mais resiliente do que pensa.",
+      "Nunca é tarde para seguir um novo caminho.",
+      "Acredite que você merece o melhor.",
+      "Você é a sua melhor versão em construção.",
+      "Tudo começa com um pensamento positivo.",
+      "Faça hoje o que seu futuro agradecerá.",
+      "Você tem mais controle do que imagina.",
+      "A beleza da vida está em tentar novamente.",
+      "Crescer dói, mas vale a pena.",
+      "Você está aprendendo, e isso já é um progresso.",
+      "Cada desafio é uma chance de evoluir.",
+      "Você não precisa ser perfeito para ser incrível.",
+      "Seu esforço importa, mesmo que ninguém veja.",
+      "Você é mais do que seus erros.",
+      "Continue plantando — a colheita virá.",
+      "Faça o seu melhor com o que você tem.",
+      "Você merece acreditar em si mesmo.",
+      "Não espere por motivação, crie ação.",
+      "Um dia de cada vez já é suficiente.",
+      "Você já é motivo de orgulho.",
+      "Valorize seu esforço diário.",
+      "Seja você mesmo, isso já é extraordinário.",
+      "A sua força interior é sua aliada.",
+      "Mesmo no caos, flores podem nascer.",
+      "Não se cobre tanto — você está indo bem.",
+      "Você tem potencial ilimitado.",
+      "O mundo precisa do seu brilho.",
+      "Nunca pare de acreditar em dias melhores.",
+      "Você é capaz de transformar sua realidade.",
+      "Permita-se sonhar alto.",
+      "Seja constante — isso te leva longe.",
+      "Você tem um propósito único.",
+      "Seu esforço não é em vão.",
+      "Tudo o que é seu encontrará um caminho.",
+      "Cada dia é uma nova chance de recomeçar.",
+      "Acredite no que você está construindo.",
+      "Você merece tudo de bom que está por vir.",
+      "Nada é tão seu quanto seus sonhos.",
+      "Sua vida pode mudar em um instante.",
+      "Não perca sua essência.",
+      "Você é mais especial do que imagina.",
+      "Tenha fé em si mesmo.",
+      "Você é capaz de criar um futuro incrível.",
+      "Você está exatamente onde precisa estar para crescer.",
+      "Transforme seus pensamentos, transforme sua vida.",
+      "Você é suficiente, sempre foi.",
+      "Você está indo no ritmo certo para você.",
+      "Permita-se florescer com leveza.",
+      "Você é uma obra em progresso — continue esculpindo."
+    ];
+
+    const mensagemEl = document.getElementById("mensagem");
+
+    function trocarMensagem() {
+      mensagemEl.classList.remove("fade-in"); // inicia fade-out
+      setTimeout(() => {
+        const nova = mensagens[Math.floor(Math.random() * mensagens.length)];
+        mensagemEl.textContent = nova;
+        mensagemEl.classList.add("fade-in"); // inicia fade-in
+      }, 1000); // espera o fade-out terminar (1s)
+    }
+
+    trocarMensagem(); // primeira mensagem
+    setInterval(trocarMensagem, 3000); // troca a cada 5 segundos
+  </script>
+</body>
+</html>
